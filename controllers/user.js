@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const User = require('../models/User.js');
+const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 
 const listAllUser =  async (req, res) => {
@@ -27,12 +28,19 @@ const createUser = async (req, res) => {
                 msg: `ya existe un usuario con el email: ${req.body.user_id}`
             })
         }
+        console.log(3);
         const {user_id, name, email, password, role, seller} = req.body;
+        console.log(4);
+        const salt = bcrypt.genSaltSync(10);
+        console.log(5);
+        const passwordEnc = bcrypt.hashSync(password, salt);
+        console.log(6);
         const user = new User;
         user.userId = user_id;
         user.name = name;
         user.email = email;
-        user.password = password;
+        user.password = passwordEnc;
+        console.log(7);
         user.role = role;
         user.seller = seller;
         user.createDate = new Date();

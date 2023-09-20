@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const { body } = require('express-validator');
 const {createBrand, listAllBrand, deleteBrand, getOneBrand, updateBrand} = require('../controllers/brand.js');
+//const { validarJWT } = require('../middleware/tokenJWT.js');
+//const { esAdmin } = require('../middleware/roleValidator.js');
 
 const router = Router();
 

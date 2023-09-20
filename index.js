@@ -17,6 +17,7 @@ app.use('/role', require('./routes/role.js'));
 app.use('/seller', require('./routes/seller.js'));
 app.use('/user', require('./routes/user.js'));
 app.use('/product', require('./routes/product.js'));
+app.use('/auth', require('./routes/auth.js'));
 
 app.listen(port, () => {
   console.log(`app listening on port ${port}`);
