@@ -22,7 +22,7 @@ app.use('/product', require('./routes/product.js'));
 app.use('/auth', require('./routes/auth.js'));
 app.use('/validation',  (req, res) => {res.status(200).json({saludo: "la app funciona"})}
   );
-app.use('/',  (req, res) => {res.status(200).json({Confirmation: "APP WORKING"})}
+app.use('/',  (req, res) => {res.status(200).json({confirmation: "APP WORKING"})}
   );
 
 
