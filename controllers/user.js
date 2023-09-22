@@ -28,19 +28,15 @@ const createUser = async (req, res) => {
                 msg: `ya existe un usuario con el email: ${req.body.user_id}`
             })
         }
-        console.log(3);
         const {user_id, name, email, password, role, seller} = req.body;
-        console.log(4);
-        const salt = bcrypt.genSaltSync(10);
-        console.log(5);
-        const passwordEnc = bcrypt.hashSync(password, salt);
-        console.log(6);
+        const salt = await bcrypt.genSalt(10);
+        const passwordEnc = await bcrypt.hash(password, salt);
+
         const user = new User;
         user.userId = user_id;
         user.name = name;
         user.email = email;
         user.password = passwordEnc;
-        console.log(7);
         user.role = role;
         user.seller = seller;
         user.createDate = new Date();

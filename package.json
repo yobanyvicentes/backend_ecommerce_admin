@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
     "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Yobany Vicentes",
   "license": "ISC",
@@ -18,5 +19,8 @@
     "mongodb": "^5.8.1",
     "mongoose": "^7.4.5",
     "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": "18.18.0"
   }
 }
