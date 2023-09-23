@@ -9,7 +9,7 @@ const router = Router();
 router.get('/', validarJWT, esAdmin,  listAllRole);
 router.post('/', validarJWT, esAdmin,  [body(['internal_id', 'name'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], createRole);
 router.get('/:roleId', validarJWT, esAdmin,  getOneRole);
-router.put('/:roleId', validarJWT, esAdmin,  [body(['internal_id', 'name'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], updateRole);
+router.put('/edit/:roleId', validarJWT, esAdmin,  [body(['internal_id', 'name'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], updateRole);
 router.delete('/:roleId', validarJWT, esAdmin,  deleteRole);
 
 module.exports = router

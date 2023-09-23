@@ -9,7 +9,7 @@ const router = Router();
 router.get('/', validarJWT, esAdmin,  listAllProduct);
 router.post('/', validarJWT, esAdmin,  [body(['internal_id', 'name', 'description', 'image', 'price', 'inventory', 'seller', 'brand', 'category'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], createProduct);
 router.get('/:productId', validarJWT, esAdmin,  getOneProduct);
-router.put('/:productId', validarJWT, esAdmin,  [body(['internal_id', 'name', 'description', 'image', 'price', 'inventory', 'seller', 'brand', 'category'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], updateProduct);
+router.put('/edit/:productId', validarJWT, esAdmin,  [body(['internal_id', 'name', 'description', 'image', 'price', 'inventory', 'seller', 'brand', 'category'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], updateProduct);
 router.delete('/:productId', validarJWT, esAdmin,  deleteProduct);
 
 module.exports = router

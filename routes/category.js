@@ -9,7 +9,7 @@ const router = Router();
 router.get('/',  validarJWT, esAdmin, listAllCategory);
 router.post('/',  validarJWT, esAdmin, [body(['internal_id', 'name'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], createCategory);
 router.get('/:categoryId',  validarJWT, esAdmin, getOneCategory);
-router.put('/:categoryId', validarJWT, esAdmin,  [body(['internal_id', 'name'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], updateCategory);
+router.put('/edit/:categoryId', validarJWT, esAdmin,  [body(['internal_id', 'name'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], updateCategory);
 router.delete('/:categoryId', validarJWT, esAdmin,  deleteCategory);
 
 module.exports = router
