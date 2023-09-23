@@ -26,7 +26,7 @@ const login = async (req, res) => {
             })
         };
         //generar token
-        const TIEMPO_EXPIRATION_HORAS = 24 * 60 * 60 * 1000;
+        const TIEMPO_EXPIRATION_HORAS = 1 * 60 * 60 * 1000;
         const payload = {
             user: user.email,
             name: user.nombre,
