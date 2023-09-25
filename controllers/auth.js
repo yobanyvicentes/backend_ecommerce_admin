@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 //metodo login
-const login = async (req, res) => {
+const login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         //validar existencia user
@@ -38,6 +38,7 @@ const login = async (req, res) => {
             process.env.SECRET_KEY,
         );
         res.json({ user, token });
+        next();
     } catch (error) {
         res.status(500).send('hay un error');
     }
