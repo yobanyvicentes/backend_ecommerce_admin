@@ -8,7 +8,7 @@ const router = Router();
 getConnection();
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 app.use(cors());
 app.use(express.json());
@@ -20,10 +20,8 @@ app.use('/seller', require('./routes/seller.js'));
 app.use('/user', require('./routes/user.js'));
 app.use('/product', require('./routes/product.js'));
 app.use('/auth', require('./routes/auth.js'));
-app.use('/validation',  (req, res) => {res.status(200).json({saludo: "la app funciona"})}
-  );
-app.use('/',  (req, res) => {res.status(200).json({confirmation: "APP WORKING"})}
-  );
+
+//app.use('/',  (req, res) => {res.status(200).json({confirmation: "APP WORKING"})});
 
 
 app.listen(port, () => {
