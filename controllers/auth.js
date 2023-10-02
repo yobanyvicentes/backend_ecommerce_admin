@@ -10,7 +10,8 @@ const login = async (req, res, next) => {
         const { email, password } = req.body;
         //validar existencia user
         const user = await User.findOne({ email }).populate([
-            {path: 'role' , select: 'name'}
+            {path: 'role' , select: 'name'},
+            {path: 'seller' , select: 'name'},
         ]);
         if (!user) {
             return res.status(404).json({
@@ -18,17 +19,18 @@ const login = async (req, res, next) => {
             })
         };
         //validar que la contraseña sea correcta
-        const esPassword = bcrypt.compareSync(password, user.password);
+        const esPassword = await bcrypt.compare(password, user.password);
         if (!esPassword) {
             return res.status(404).json({
-                msg: "contraseña incorrecta"
+                message: "contraseña incorrecta"
             })
         };
         //generar token
         const payload = {
             user: user.email,
             name: user.nombre,
-            role: user.role,
+            role: user.role.name,
+            tenantName: user.seller.name,
         };
         const token = jwt.sign(
             payload,

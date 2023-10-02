@@ -10,6 +10,6 @@ router.get('/', validarJWT, esAdmin,  listAllSeller);
 router.post('/', validarJWT, esAdmin,  [body(['internal_id', 'name', 'description'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], createSeller);
 router.get('/:sellerId', validarJWT, esAdmin,  getOneSeller);
 router.put('/edit/:sellerId', validarJWT, esAdmin,  [body(['internal_id', 'name', 'description'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], updateSeller);
-router.delete('/:sellerId', validarJWT, esAdmin, deleteSeller);
+router.delete('/delete/:sellerId', validarJWT, esAdmin, deleteSeller);
 
 module.exports = router

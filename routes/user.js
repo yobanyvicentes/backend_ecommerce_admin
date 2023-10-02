@@ -9,7 +9,7 @@ const router = Router();
 router.get('/', validarJWT, esAdmin,  listAllUser);
 router.post('/', validarJWT, esAdmin,  [body(['user_id', 'name', 'email', 'password', 'role', 'seller'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty(), body('email', 'debe ser un email con formato valido').isEmail()], createUser);
 router.get('/:userId', validarJWT, esAdmin,  getOneUser);
-router.put('/edit/:userId', validarJWT, esAdmin,  [body(['user_id', 'name', 'email', 'password', 'role', 'seller'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty(), body('email', 'debe ser un email con formato valido').isEmail()], updateUser);
-router.delete('/:userId', validarJWT, esAdmin,  deleteUser);
+router.put('/edit/:userId', validarJWT, esAdmin,  [body(['user_id', 'name', 'email', 'password', 'role'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty(), body('email', 'debe ser un email con formato valido').isEmail()], updateUser);
+router.delete('/delete/:userId', validarJWT, esAdmin,  deleteUser);
 
 module.exports = router

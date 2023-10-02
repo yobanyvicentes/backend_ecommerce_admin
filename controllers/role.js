@@ -4,7 +4,12 @@ const { validationResult } = require('express-validator');
 
 const listAllRole =  async (req, res) => {
     try {
-        const roles = await Role.find();
+        const tenantName = req.tenantName;
+        const tenant = await Seller.findOne({name: tenantName});
+        if (!tenant) {
+            return res.status(400).json({message: "el tenant no es valido"});
+        }
+        const roles = await Role.find({seller: tenant});
         res.status(200).json(roles);
     } catch (error) {
         console.log(error)

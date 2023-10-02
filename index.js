@@ -4,7 +4,6 @@ const cors = require('cors');
 const { Router } = require('express');
 require('dotenv').config();
 
-const router = Router();
 getConnection();
 
 const app = express();
@@ -21,7 +20,7 @@ app.use('/user', require('./routes/user.js'));
 app.use('/product', require('./routes/product.js'));
 app.use('/auth', require('./routes/auth.js'));
 
-//app.use('/',  (req, res) => {res.status(200).json({confirmation: "APP WORKING"})});
+app.use('/test',  (req, res) => {res.status(200).json({confirmation: "APP WORKING"})});
 
 
 app.listen(port, () => {

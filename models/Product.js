@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const productSchema = Schema({
-    internalId: {type: String, required: true, unique: true},
+    internalId: {type: String, required: true},
     name: {type: String, required: true, minlength: 3},
     description: {type: String, required: true, minlength: 3},
     image: {type: String, required: true},
@@ -15,7 +15,8 @@ const productSchema = Schema({
         validate:{
             validator:(value)=>{return value > 0;},
             message: "el inventario debe ser mayor a cero"
-        }},
+        }
+    },
     seller: {type: Schema.Types.ObjectId, ref: "Seller", required: false},
     brand: {type: Schema.Types.ObjectId, ref: "Brand", required: true},
     category: {type: Schema.Types.ObjectId, ref: "Category", required: true},

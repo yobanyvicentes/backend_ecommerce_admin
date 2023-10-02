@@ -10,6 +10,6 @@ router.get('/', validarJWT, esAdmin, listAllBrand);
 router.post('/', validarJWT, esAdmin,  [body(['internal_id', 'name'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], createBrand);
 router.get('/:brandId', validarJWT, esAdmin,  getOneBrand);
 router.put('/edit/:brandId', validarJWT, esAdmin,  [body(['internal_id', 'name'], 'el campo descrito en el path está vacio, debe asignarle un valor').notEmpty()], updateBrand);
-router.delete('/:brandId', validarJWT, esAdmin,  deleteBrand);
+router.delete('/delete/:brandId', validarJWT, esAdmin,  deleteBrand);
 
 module.exports = router

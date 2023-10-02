@@ -14,12 +14,13 @@ const validarJWT = (req, res, next) => {
         console.log("el payload de la verificación es:", payload);
         //preparar el request para el siguiente middleware
         req.user = payload;
-        console.log("el req.user de la verificación es", req.user);
+        req.tenantName = payload.tenantName;
         //Dar paso al siguiente middleware
         next();
     } catch (error) {
         return res.status(401).json({
-            msg: "token invalido validarJWT",
+            msg: "token invalido",
+            msgStatus: false,
             error
         });
     }
