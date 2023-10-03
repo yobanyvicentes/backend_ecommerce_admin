@@ -141,7 +141,6 @@ const updateUser = async (req, res) => {
         user.userId = user_id;
         user.name = name;
         user.email = email;
-        user.password = password;
         user.role = role;
         user.updateDate = Date.now();
 
