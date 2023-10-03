@@ -10,10 +10,10 @@ const listAllProduct =  async (req, res) => {
         if (!tenant) {
             return res.status(400).json({message: "el tenant no es valido"});
         }
-        const products = await Product.find({seller: tenant}).populate([
+        const products = await Product.find({seller: tenant._id})
+        .populate([
             {path:'brand', select: 'name'},
-            {path:'seller', select: 'name description'},
-            {path:'role', select: 'name'},
+            {path:'category', select: 'name'},
         ]);
         res.status(200).json(products);
     } catch (error) {
@@ -33,7 +33,7 @@ const createProduct = async (req, res) => {
         if (!tenant) {
             return res.status(400).json({message: "el tenant no es valido"});
         }
-        const internalIdExist = await Product.findOne({internalId: req.body.internal_id, seller:{ $ne: tenant._id}});
+        const internalIdExist = await Product.findOne({internalId: req.body.internal_id, seller: tenant._id});
         if (internalIdExist) {
             return res.status(400).json({
                 msg: `ya existe el producto con el id interno: ${req.body.internal_id}`
@@ -68,14 +68,14 @@ const getOneProduct = async (req, res) => {
             return res.status(400).send('la extensión o formato del id ingresado es invalido');
         };
         const tenantName = req.tenantName;
-        const tenant = await Seller.findOne({name: tenantName});
+        const tenant = await Seller.findOne({name: tenantName})
         if (!tenant) {
             return res.status(400).json({message: "el tenant no es valido"});
         }
         let product = await Product.findById(req.params.productId).populate([
             {path:'brand', select: 'name'},
-            {path:'seller', select: 'name description'},
-            {path:'role', select: 'name'},
+            {path:'category', select: 'name'},
+            {path:'seller', select: 'name'},
         ]);
         if (!product) {
             return res.status(400).send('el producto a consultar no existe');

@@ -29,21 +29,20 @@ const createCategory = async (req, res) => {
         if (!tenant) {
             return res.status(400).json({message: "el tenant no es valido"});
         }
-        const internalIdExist = await Category.findOne({internalId: req.body.internal_id, seller:{ $ne: tenant._id}});
+        const internalIdExist = await Category.findOne({internalId: req.body.internal_id, seller: tenant._id});
         if (internalIdExist) {
             return res.status(400).json({
                 msg: `ya existe la categoria con el id interno: ${req.body.internal_id}`
             })
         }
         const {internal_id, name} = req.body;
-        const category= new Category;
+        const category = new Category;
         category.internalId = internal_id;
         category.name = name;
         category.seller = tenant._id;
         category.createDate = new Date();
         category.updateDate = new Date();
         const categorySaved = await category.save();
-        console.log(category)
         res.status(200).json(categorySaved);
     } catch (error) {
         console.log(error)

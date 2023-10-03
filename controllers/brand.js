@@ -29,7 +29,7 @@ const createBrand = async (req, res) => {
         if (!tenant) {
             return res.status(400).json({message: "el tenant no es valido"});
         }
-        const internalIdExist = await Brand.findOne({internalId: req.body.internal_id, seller:{ $ne: tenant._id}});
+        const internalIdExist = await Brand.findOne({internalId: req.body.internal_id, seller: tenant._id});
         if (internalIdExist) {
             return res.status(400).json({
                 msg: `ya existe la marca con el id interno: ${req.body.internal_id}`
@@ -114,11 +114,11 @@ const updateBrand = async (req, res) => {
         if (!tenant) {
             return res.status(400).json({message: "el tenant no es valido"});
         }
-        let brand = await Brand.findOne({_id: req.params.brandId, seller: tenant});
+        let brand = await Brand.findOne({_id: req.params.brandId, seller: tenant._id});
         if (!brand) {
             return res.status(400).send('la marca a actualizar no existe');
         };
-        const internalIdExist = await Brand.findOne({_id: {$ne: brand._id}, seller: tenant, internalId: req.body.internal_id});
+        const internalIdExist = await Brand.findOne({_id: {$ne: brand._id}, seller: tenant._id, internalId: req.body.internal_id});
         if(internalIdExist){
             return res.status(400).send('el id interno ingresado ya está asignado a otra marca distinta a la que está intentando actualizar, en ese caso actualice el valor del inventario')
         }

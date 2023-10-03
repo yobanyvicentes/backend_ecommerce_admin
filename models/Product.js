@@ -17,9 +17,9 @@ const productSchema = Schema({
             message: "el inventario debe ser mayor a cero"
         }
     },
-    seller: {type: Schema.Types.ObjectId, ref: "Seller", required: false},
     brand: {type: Schema.Types.ObjectId, ref: "Brand", required: true},
     category: {type: Schema.Types.ObjectId, ref: "Category", required: true},
+    seller: {type: Schema.Types.ObjectId, ref: "Seller", required: false},
     createDate: {type: Date, required: true},
     updateDate: {type: Date, required: true},
 });

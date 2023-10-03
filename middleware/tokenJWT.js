@@ -11,7 +11,6 @@ const validarJWT = (req, res, next) => {
     }
     try {
         const payload = jwt.verify(token, process.env.SECRET_KEY);
-        console.log("el payload de la verificación es:", payload);
         //preparar el request para el siguiente middleware
         req.user = payload;
         req.tenantName = payload.tenantName;
