@@ -21,6 +21,7 @@ app.use('/product', require('./routes/product.js'));
 app.use('/auth', require('./routes/auth.js'));
 
 app.use('/test',  (req, res) => {res.status(200).json({confirmation: "APP WORKING"})});
+app.use('/validation',  (req, res) => {res.status(200).json({confirmation: "APP WORKING"})});
 
 
 app.listen(port, () => {
