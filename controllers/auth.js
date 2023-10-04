@@ -40,7 +40,7 @@ const login = async (req, res, next) => {
         next();
         res.json({ token });
     } catch (error) {
-        //console.log(error);
+        console.log(error);
         res.status(500).send('hay un error');
     }
 }
